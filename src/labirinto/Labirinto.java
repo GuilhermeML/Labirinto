@@ -8,7 +8,7 @@ public class Labirinto {
 
     //Recebe o nome do arquivo do labirinto
     public Labirinto(String nomeArquivo){
-
+        parseCsv(nomeArquivo);
     }
 
     // Metodo chamado pelo JogoController
