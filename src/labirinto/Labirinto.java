@@ -1,23 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package labirinto;
 
-/**
- *
- * @author Guilherme
- */
+import java.util.ArrayList;
+
 public class Labirinto {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-        System.out.println("Hello UFABC!");
-        // TODO code application logic here
+    private Posicao[][] posicoes;
+
+    //Recebe o nome do arquivo do labirinto
+    public Labirinto(String nomeArquivo){
+
     }
-    
+
+    // Metodo chamado pelo JogoController
+    //Obtem a posicao inicial em que o jogador deve iniciar
+    public Posicao getPosicaoInicial(){
+        //TODO: Percorrer matriz, encontrar posicao inicial e retornar
+
+        //Retorno temporario apenas para o codigo compilar
+        return new Posicao(0,0, Posicao.ENTRADA);
+    }
+
+    //Metodo chamado pelo jogador
+    //Retorna todas as posicoes para as quais o
+    //jogador pode se movimentar, dado sua posicao atual
+    public ArrayList<Posicao> getPosicoesPossiveis(Posicao posAtual){
+        ArrayList<Posicao> posPossiveis = new ArrayList<>();
+
+        //TODO: Construir logica para obter possiveis posicoes que o jogador pode se movimentar
+
+        return posPossiveis;
+    }
+
+    //Metodo utilizado para ler o arquivo .csv e transforma-lo
+    //em uma matriz de objetos Posicao
+    private void parseCsv(String nomeArquivo){
+        //TODO: Parse CSV
+    }
+
 }
