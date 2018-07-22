@@ -9,21 +9,21 @@ public class JogoController {
         //Passar nome do arquivo do labirinto como parametro
         //Talvez escolher o mapa aleatoriamente ou criar um sistema de niveis,
         //onde a cada rodada o labirinto fica mais dificil
-        Labirinto labirinto = new Labirinto("Arquivo X");
+        Labirinto labirinto = new Labirinto("lab1.csv");
 
-        //Instanciar Jogador,
-        //Passar labirinto como parametro
-        Jogador jogador =  new Jogador(labirinto);
-
-        //Inicializar o contador de tempo
-        tempo = System.currentTimeMillis();
-
-        //Chamar metodo do jogador para iniciar jogo
-        jogador.iniciar();
-
-        //Quando jogador finalizar, mostrar o resultado
-        //Com o tempo gasto e o caminho percorrido
-        mostrarResultado();
+//        //Instanciar Jogador,
+//        //Passar labirinto como parametro
+//        Jogador jogador =  new Jogador(labirinto);
+//
+//        //Inicializar o contador de tempo
+//        tempo = System.currentTimeMillis();
+//
+//        //Chamar metodo do jogador para iniciar jogo
+//        jogador.iniciar();
+//
+//        //Quando jogador finalizar, mostrar o resultado
+//        //Com o tempo gasto e o caminho percorrido
+//        mostrarResultado();
     }
 
     public void mostrarResultado(){
