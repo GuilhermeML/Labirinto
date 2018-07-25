@@ -124,7 +124,13 @@ public class Labirinto {
             //DEV: Imprimir Labirinto
             for(int i = 0; i < posicoes.length; i++){
                 for(int j = 0; j < posicoes[0].length; j++){
-                    System.out.print(posicoes[i][j].getTipo() + " ");
+                    if(posicoes[i][j].getTipo() == Posicao.CAMINHO){
+                        System.out.print(" " + " ");
+                    }else if(posicoes[i][j].getTipo() == Posicao.PAREDE){
+                        System.out.print("#" + " ");
+                    }else{
+                        System.out.print(posicoes[i][j].getTipo() + " ");
+                    }
                 }
                 System.out.println();
             }
