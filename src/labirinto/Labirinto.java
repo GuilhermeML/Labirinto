@@ -17,10 +17,18 @@ public class Labirinto {
     // Metodo chamado pelo JogoController
     //Obtem a posicao inicial em que o jogador deve iniciar
     public Posicao getPosicaoInicial(){
-        //TODO: Percorrer matriz, encontrar posicao inicial e retornar
 
-        //Retorno temporario apenas para o codigo compilar
-        return new Posicao(0,0, Posicao.ENTRADA);
+        //Percorre a matriz e retorna a posicao inicial assim que for encontrada
+        for(int i = 0; i < posicoes.length; i++){
+            for(int j = 0; j < posicoes[0].length; j++){
+                if(posicoes[i][j].getTipo() == Posicao.ENTRADA){
+                    return posicoes[i][j];
+                }
+            }
+        }
+
+        //Retornar null se nao encontrar posicao inicial
+        return null;
     }
 
     //Metodo chamado pelo jogador
@@ -92,6 +100,7 @@ public class Labirinto {
                 colunas++;
             }
 
+            //DEV: Imprimir tamanho do labirinto
             System.out.println("Linhas: " + linhas);
             System.out.println("Colunas: " + colunas);
 

@@ -11,9 +11,9 @@ public class JogoController {
         //onde a cada rodada o labirinto fica mais dificil
         Labirinto labirinto = new Labirinto("lab1.csv");
 
-//        //Instanciar Jogador,
-//        //Passar labirinto como parametro
-//        Jogador jogador =  new Jogador(labirinto);
+        //Instanciar Jogador,
+        //Passar labirinto como parametro
+        Jogador jogador =  new Jogador(labirinto);
 //
 //        //Inicializar o contador de tempo
 //        tempo = System.currentTimeMillis();
