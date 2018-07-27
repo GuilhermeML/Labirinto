@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Labirinto {
+public class Labirinto implements Labirintos {
 
     private Posicao[][] posicoes;
 
@@ -14,7 +14,7 @@ public class Labirinto {
         parseCsv(nomeArquivo);
     }
 
-    // Metodo chamado pelo JogoController
+    // Metodo chamado pelo jogador
     //Obtem a posicao inicial em que o jogador deve iniciar
     public Posicao getPosicaoInicial(){
 
@@ -80,7 +80,7 @@ public class Labirinto {
 
     //Metodo utilizado para ler o arquivo .csv e transforma-lo
     //em uma matriz de objetos Posicao
-    private void parseCsv(String nomeArquivo){
+    public void parseCsv(String nomeArquivo){
 
         String arquivo = "res/" + nomeArquivo;
         String linha = "";
