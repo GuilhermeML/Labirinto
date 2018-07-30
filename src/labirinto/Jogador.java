@@ -1,7 +1,6 @@
 package labirinto;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Jogador {
@@ -9,7 +8,6 @@ public class Jogador {
     private Posicao posAtual;
     private ArrayList<Posicao> caminho = new ArrayList<>();
     private Labirinto labirinto;
-    private Random rand = new Random();
 
     public Jogador(Labirinto labirinto){
         this.labirinto = labirinto;
@@ -52,14 +50,6 @@ public class Jogador {
         }
 
         return posicao;
-
-        //Se todas ja foram visitadas, escolhe uma aleatoriamente
-//        int index = rand.nextInt(posicoes.size());
-//
-//        return posicoes.get(index);
-
-        //Retorno temporario para o codigo compilar
-//        return new Posicao(0,0, Posicao.CAMINHO);
     }
 
     private boolean mover(Posicao posicao){
