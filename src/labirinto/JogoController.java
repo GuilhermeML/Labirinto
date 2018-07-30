@@ -19,23 +19,25 @@ public class JogoController {
 
         //Instanciar Jogador,
         //Passar labirinto como parametro
-        Jogador jogador1 =  new Jogador((Labirinto)labirinto1);
+        Jogador jogador =  new Jogador(labirinto1);
 //
-//        //Inicializar o contador de tempo
-//        tempo = System.currentTimeMillis();
-//
-//        //Chamar metodo do jogador para iniciar jogo
-//        jogador.iniciar();
+        //Inicializar o contador de tempo
+        tempo = System.currentTimeMillis();
+
+        //Chamar metodo do jogador para iniciar jogo
+        jogador.iniciar();
+		System.out.println("FIM");
+
 //
 //        //Quando jogador finalizar, mostrar o resultado
 //        //Com o tempo gasto e o caminho percorrido
 //        
         //Mudei passando o labirinto como parametro, assim trabalha a questão do instanceof, e printa diferente para cada nivel
-        //mostrarResultado();
+//        mostrarResultado();
         
         //Concluiu o nivel1 com sucesso, instancia o nivel2
-        Labirinto labirinto2 = new Nivel2();
-        Jogador jogador2 = new Jogador((Labirinto)labirinto2);
+//        Labirinto labirinto2 = new Nivel2();
+//        Jogador jogador2 = new Jogador((Labirinto)labirinto2);
     }
 
     public void mostrarResultado(Labirinto labirinto){

@@ -1,12 +1,15 @@
 package labirinto;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Jogador {
 
     private Posicao posAtual;
     private ArrayList<Posicao> caminho = new ArrayList<>();
     private Labirinto labirinto;
+    private Random rand = new Random();
 
     public Jogador(Labirinto labirinto){
         this.labirinto = labirinto;
@@ -33,10 +36,30 @@ public class Jogador {
 
     private Posicao decidirProximoMovimento(ArrayList<Posicao> posicoes){
 
-        //TODO: Logica para decisao de proxima posicao
+        //Anda para a primeira posicao que ainda nao foi visitada
+        for(int i = 0; i < posicoes.size(); i++){
+            if(!caminho.contains(posicoes.get(i))){
+                return posicoes.get(i);
+            }
+        }
+
+        //Se todas ja foram visitadas, decide andar para a posicao visitada mais antiga
+        Posicao posicao = posicoes.get(0);
+        for(int i = 1; i < posicoes.size(); i++){
+            if(posicoes.get(i).getVisitada() < posicao.getVisitada()){
+                posicao = posicoes.get(i);
+            }
+        }
+
+        return posicao;
+
+        //Se todas ja foram visitadas, escolhe uma aleatoriamente
+//        int index = rand.nextInt(posicoes.size());
+//
+//        return posicoes.get(index);
 
         //Retorno temporario para o codigo compilar
-        return new Posicao(0,0, Posicao.CAMINHO);
+//        return new Posicao(0,0, Posicao.CAMINHO);
     }
 
     private boolean mover(Posicao posicao){
@@ -46,6 +69,20 @@ public class Jogador {
 
         //Adicionar a posicao no Array do caminho percorrido
         caminho.add(posicao);
+
+        //Modificar variavel 'visitada' da posicao para true
+        posicao.setVisitada();
+
+        //Imprimir labirinto
+        labirinto.imprimirLabirinto(posAtual);
+
+        //aguardar um segundo para a proxima jogada
+        try{
+            TimeUnit.MILLISECONDS.sleep(500);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
 
         //Verificar se a posicao eh a saida
         //Se sim, retorna true

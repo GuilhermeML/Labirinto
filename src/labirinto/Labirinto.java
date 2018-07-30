@@ -42,38 +42,38 @@ public class Labirinto implements Labirintos {
 
         //Verificar se pode andar para cima
         if(linha - 1 >= 0 && linha - 1 < posicoes.length){
-            if(posicoes[posAtual.getLinha() - 1][posAtual.getColuna()].getTipo() == Posicao.CAMINHO){
+            if(posicoes[posAtual.getLinha() - 1][posAtual.getColuna()].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha() - 1][posAtual.getColuna()].getTipo() == Posicao.SAIDA){
                 posPossiveis.add(posicoes[posAtual.getLinha() - 1][posAtual.getColuna()]);
             }
         }
 
         //Verificar se pode andar para a direita
         if(coluna + 1 >= 0 && coluna + 1 < posicoes[0].length){
-            if(posicoes[posAtual.getLinha()][posAtual.getColuna() + 1].getTipo() == Posicao.CAMINHO){
+            if(posicoes[posAtual.getLinha()][posAtual.getColuna() + 1].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha()][posAtual.getColuna() + 1].getTipo() == Posicao.SAIDA){
                 posPossiveis.add(posicoes[posAtual.getLinha()][posAtual.getColuna() + 1]);
             }
         }
 
         //Verificar se pode andar para baixo
         if(linha + 1 >= 0 && linha + 1 < posicoes.length){
-            if(posicoes[posAtual.getLinha() + 1][posAtual.getColuna()].getTipo() == Posicao.CAMINHO){
+            if(posicoes[posAtual.getLinha() + 1][posAtual.getColuna()].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha() + 1][posAtual.getColuna()].getTipo() == Posicao.SAIDA){
                 posPossiveis.add(posicoes[posAtual.getLinha() + 1][posAtual.getColuna()]);
             }
         }
 
         //Verificar se pode andar para a esquerda
         if(coluna - 1 >= 0 && coluna - 1 < posicoes[0].length){
-            if(posicoes[posAtual.getLinha()][posAtual.getColuna() - 1].getTipo() == Posicao.CAMINHO){
+            if(posicoes[posAtual.getLinha()][posAtual.getColuna() - 1].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha()][posAtual.getColuna() - 1].getTipo() == Posicao.SAIDA){
                 posPossiveis.add(posicoes[posAtual.getLinha()][posAtual.getColuna() - 1]);
             }
         }
 
         //DEV: Imprimir posicoes possiveis
-        System.out.println();
-        System.out.println("Posicoes Possiveis: ");
-        for(int i = 0; i < posPossiveis.size(); i++){
-            System.out.println(posPossiveis.get(i).getLinha() + " " + posPossiveis.get(i).getColuna());
-        }
+//        System.out.println();
+//        System.out.println("Posicoes Possiveis: ");
+//        for(int i = 0; i < posPossiveis.size(); i++){
+//            System.out.println(posPossiveis.get(i).getLinha() + " " + posPossiveis.get(i).getColuna());
+//        }
 
         return posPossiveis;
     }
@@ -130,22 +130,28 @@ public class Labirinto implements Labirintos {
                 indexLinha++;
             }
 
-            //DEV: Imprimir Labirinto
-            for(int i = 0; i < posicoes.length; i++){
-                for(int j = 0; j < posicoes[0].length; j++){
-                    if(posicoes[i][j].getTipo() == Posicao.CAMINHO){
-                        System.out.print(" " + " ");
-                    }else if(posicoes[i][j].getTipo() == Posicao.PAREDE){
-                        System.out.print("#" + " ");
-                    }else{
-                        System.out.print(posicoes[i][j].getTipo() + " ");
-                    }
-                }
-                System.out.println();
-            }
-
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void imprimirLabirinto(Posicao posAtual){
+        System.out.println("");
+        for(int i = 0; i < posicoes.length; i++){
+            for(int j = 0; j < posicoes[0].length; j++){
+                if(posicoes[i][j] == posAtual){
+                    System.out.print("@" + " ");
+                }else if(posicoes[i][j].getVisitada() != -1){
+                    System.out.print("." + " ");
+                }else if(posicoes[i][j].getTipo() == Posicao.CAMINHO){
+                    System.out.print(" " + " ");
+                }else if(posicoes[i][j].getTipo() == Posicao.PAREDE){
+                    System.out.print("#" + " ");
+                }else{
+                    System.out.print(posicoes[i][j].getTipo() + " ");
+                }
+            }
+            System.out.println();
         }
     }
 

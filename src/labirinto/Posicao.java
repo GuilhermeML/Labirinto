@@ -7,6 +7,7 @@ public class Posicao {
 
     private int linha, coluna;
     private int tipo;
+    private long visitada = -1;
 
     public Posicao(int linha, int coluna, int tipo){
         this.linha = linha;
@@ -24,5 +25,13 @@ public class Posicao {
 
     public int getTipo() {
         return tipo;
+    }
+
+    public long getVisitada() {
+        return visitada;
+    }
+
+    public void setVisitada() {
+        this.visitada = System.currentTimeMillis();
     }
 }
