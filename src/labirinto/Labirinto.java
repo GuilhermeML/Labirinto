@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Labirinto implements Labirintos {
 
     private Posicao[][] posicoes;
+    private Random rand = new Random();
 
     //Recebe o nome do arquivo do labirinto
     public Labirinto(String nomeArquivo){
@@ -40,32 +42,17 @@ public class Labirinto implements Labirintos {
         int linha = posAtual.getLinha();
         int coluna = posAtual.getColuna();
 
-        //Verificar se pode andar para cima
-        if(linha - 1 >= 0 && linha - 1 < posicoes.length){
-            if(posicoes[posAtual.getLinha() - 1][posAtual.getColuna()].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha() - 1][posAtual.getColuna()].getTipo() == Posicao.SAIDA){
-                posPossiveis.add(posicoes[posAtual.getLinha() - 1][posAtual.getColuna()]);
-            }
-        }
+        ArrayList<String> direcoes = new ArrayList<>();
+        direcoes.add("cima");
+        direcoes.add("baixo");
+        direcoes.add("direita");
+        direcoes.add("esquerda");
 
-        //Verificar se pode andar para a direita
-        if(coluna + 1 >= 0 && coluna + 1 < posicoes[0].length){
-            if(posicoes[posAtual.getLinha()][posAtual.getColuna() + 1].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha()][posAtual.getColuna() + 1].getTipo() == Posicao.SAIDA){
-                posPossiveis.add(posicoes[posAtual.getLinha()][posAtual.getColuna() + 1]);
-            }
-        }
 
-        //Verificar se pode andar para baixo
-        if(linha + 1 >= 0 && linha + 1 < posicoes.length){
-            if(posicoes[posAtual.getLinha() + 1][posAtual.getColuna()].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha() + 1][posAtual.getColuna()].getTipo() == Posicao.SAIDA){
-                posPossiveis.add(posicoes[posAtual.getLinha() + 1][posAtual.getColuna()]);
-            }
-        }
-
-        //Verificar se pode andar para a esquerda
-        if(coluna - 1 >= 0 && coluna - 1 < posicoes[0].length){
-            if(posicoes[posAtual.getLinha()][posAtual.getColuna() - 1].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha()][posAtual.getColuna() - 1].getTipo() == Posicao.SAIDA){
-                posPossiveis.add(posicoes[posAtual.getLinha()][posAtual.getColuna() - 1]);
-            }
+        while (direcoes.size() > 0){
+            int index = rand.nextInt(direcoes.size());
+            verificarDirecao(direcoes.get(index), linha, coluna, posAtual, posPossiveis);
+            direcoes.remove(index);
         }
 
         //DEV: Imprimir posicoes possiveis
@@ -76,6 +63,45 @@ public class Labirinto implements Labirintos {
 //        }
 
         return posPossiveis;
+    }
+
+    private void verificarDirecao(String direcao, int linha, int coluna, Posicao posAtual, ArrayList<Posicao> posPossiveis){
+
+        switch(direcao){
+            case "cima":
+                //Verificar se pode andar para cima
+                if(linha - 1 >= 0 && linha - 1 < posicoes.length){
+                    if(posicoes[posAtual.getLinha() - 1][posAtual.getColuna()].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha() - 1][posAtual.getColuna()].getTipo() == Posicao.SAIDA){
+                        posPossiveis.add(posicoes[posAtual.getLinha() - 1][posAtual.getColuna()]);
+                    }
+                }
+                break;
+            case "baixo":
+                //Verificar se pode andar para baixo
+                if(linha + 1 >= 0 && linha + 1 < posicoes.length){
+                    if(posicoes[posAtual.getLinha() + 1][posAtual.getColuna()].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha() + 1][posAtual.getColuna()].getTipo() == Posicao.SAIDA){
+                        posPossiveis.add(posicoes[posAtual.getLinha() + 1][posAtual.getColuna()]);
+                    }
+                }
+                break;
+            case "direita":
+                //Verificar se pode andar para a direita
+                if(coluna + 1 >= 0 && coluna + 1 < posicoes[0].length){
+                    if(posicoes[posAtual.getLinha()][posAtual.getColuna() + 1].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha()][posAtual.getColuna() + 1].getTipo() == Posicao.SAIDA){
+                        posPossiveis.add(posicoes[posAtual.getLinha()][posAtual.getColuna() + 1]);
+                    }
+                }
+                break;
+            case "esquerda":
+                //Verificar se pode andar para a esquerda
+                if(coluna - 1 >= 0 && coluna - 1 < posicoes[0].length){
+                    if(posicoes[posAtual.getLinha()][posAtual.getColuna() - 1].getTipo() == Posicao.CAMINHO || posicoes[posAtual.getLinha()][posAtual.getColuna() - 1].getTipo() == Posicao.SAIDA){
+                        posPossiveis.add(posicoes[posAtual.getLinha()][posAtual.getColuna() - 1]);
+                    }
+                }
+                break;
+        }
+
     }
 
     //Metodo utilizado para ler o arquivo .csv e transforma-lo

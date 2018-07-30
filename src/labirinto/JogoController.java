@@ -31,6 +31,12 @@ public class JogoController {
 //
 //        //Quando jogador finalizar, mostrar o resultado
 //        //Com o tempo gasto e o caminho percorrido
+		tempo = System.currentTimeMillis() - tempo;
+
+		//Converter de milisegundos para segundos
+		tempo = tempo / 1000;
+
+		System.out.println("Tempo : "+ tempo);
 //        
         //Mudei passando o labirinto como parametro, assim trabalha a questão do instanceof, e printa diferente para cada nivel
 //        mostrarResultado();

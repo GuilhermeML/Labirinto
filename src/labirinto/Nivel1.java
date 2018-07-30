@@ -10,7 +10,7 @@ public class Nivel1 extends Labirinto implements Labirintos {
 	public Nivel1(){
 		//Passar o nome do csv de nivel1 
 		//(Isso altera o momento de instanciar o labirinto no JogoController
-		super("lab1.csv");
+		super("lab2.csv");
 	}
 	
 	public Posicao getPosicaoInicial(){
