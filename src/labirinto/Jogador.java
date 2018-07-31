@@ -8,9 +8,11 @@ public class Jogador {
     private Posicao posAtual;
     private ArrayList<Posicao> caminho = new ArrayList<>();
     private Labirinto labirinto;
+    private boolean acompanharJogador;
 
-    public Jogador(Labirinto labirinto){
+    public Jogador(Labirinto labirinto, boolean acompanharJogador){
         this.labirinto = labirinto;
+        this.acompanharJogador = acompanharJogador;
     }
 
     //Metodo chamado quando o jogador deve iniciar o jogo
@@ -66,11 +68,14 @@ public class Jogador {
         //Imprimir labirinto
         labirinto.imprimirLabirinto(posAtual);
 
-        //aguardar um segundo para a proxima jogada
-        try{
-            TimeUnit.MILLISECONDS.sleep(500);
-        }catch(Exception e){
-            System.out.println(e);
+        //aguardar para a proxima jogada
+        //
+        if(acompanharJogador){
+            try{
+                TimeUnit.MILLISECONDS.sleep(700);
+            }catch(Exception e){
+                System.out.println(e.toString());
+            }
         }
 
 

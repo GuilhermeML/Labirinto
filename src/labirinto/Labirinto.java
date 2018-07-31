@@ -162,7 +162,6 @@ public class Labirinto implements Labirintos {
     }
 
     public void imprimirLabirinto(Posicao posAtual){
-        System.out.println("");
         for(int i = 0; i < posicoes.length; i++){
             for(int j = 0; j < posicoes[0].length; j++){
                 if(posicoes[i][j] == posAtual){

@@ -1,76 +1,85 @@
 package labirinto;
 
+import java.util.Scanner;
+
 public class JogoController {
 
     private long tempo;
+    private boolean executar = true, acompanharJogador = false;
+    private Scanner scanner = new Scanner(System.in);
 
     public void comecarJogo(){
-        //Instanciar labirinto
-        //Passar nome do arquivo do labirinto como parametro
-        //Talvez escolher o mapa aleatoriamente ou criar um sistema de niveis,
-        //onde a cada rodada o labirinto fica mais dificil
-        
-    	//Alterei para fazer por niveis
-    	//A ideia inicial que eu tive : São 5 niveis, concluiu o nivel com sucesso avança para o proximo (apenas instanciar um novo tipo de nivel)
-    	//O legal é que dá para comparar o tempo de duração em cada nível por questão de dificuldade
-    	//Codigo anterior : Labirinto labirinto = new Labirinto("lab1.csv");
-    	
-    	Labirinto labirinto1 = new Nivel1();
 
-        //Instanciar Jogador,
-        //Passar labirinto como parametro
-        Jogador jogador =  new Jogador(labirinto1);
-//
-        //Inicializar o contador de tempo
-        tempo = System.currentTimeMillis();
+		System.out.println("LABIRINTO");
 
-        //Chamar metodo do jogador para iniciar jogo
-        jogador.iniciar();
-		System.out.println("FIM");
+		System.out.println("Deseja acompanhar o jogador durante o percurso? (S/N)");
 
-//
-//        //Quando jogador finalizar, mostrar o resultado
-//        //Com o tempo gasto e o caminho percorrido
-		tempo = System.currentTimeMillis() - tempo;
+		String acompanhar = scanner.next();
+		acompanhar = acompanhar.toLowerCase();
 
-		//Converter de milisegundos para segundos
-		tempo = tempo / 1000;
+		if(acompanhar.equals("s")){
+			acompanharJogador = true;
+		}
 
-		System.out.println("Tempo : "+ tempo);
-//        
-        //Mudei passando o labirinto como parametro, assim trabalha a questão do instanceof, e printa diferente para cada nivel
-//        mostrarResultado();
-        
-        //Concluiu o nivel1 com sucesso, instancia o nivel2
-//        Labirinto labirinto2 = new Nivel2();
-//        Jogador jogador2 = new Jogador((Labirinto)labirinto2);
-    }
+		while(executar){
 
-    public void mostrarResultado(Labirinto labirinto){
+			Labirinto labirinto;
+			Jogador jogador;
 
-        //Alterei para receber o labirinto para trabalhar a questão do instanceof, assim ele printa diferente o resultado para cada nivel
-    	if(labirinto instanceof Nivel1){
-    		System.out.println("Tempo e percurso do Nível1 :");
-    	} else if(labirinto instanceof Nivel2){
-    		System.out.println("Tempo e percurso do Nível2 :");
-    	} else if(labirinto instanceof Nivel3){
-    		System.out.println("Tempo e percurso do Nível3 :");
-    	} else if(labirinto instanceof Nivel4){
-    		System.out.println("Tempo e percurso do Nível4 :");
-    	} else if(labirinto instanceof Nivel5){
-    		System.out.println("Tempo e percurso do Nível5 :");
-    	}
-    	
-    	//TODO: Mostrar tempo do percurso
-        tempo = System.currentTimeMillis() - tempo;
+			System.out.println("Selecione o nível que deseja jogar:");
 
-        //Converter de milisegundos para segundos
-        tempo = tempo / 1000;
+			System.out.println("Nível 1 - Muito Fácil");
+			System.out.println("Nível 2 - Fácil");
+			System.out.println("Nível 3 - Normal");
+			System.out.println("Nível 4 - Difícil");
+			System.out.println("Nível 5 - Muito Difícil");
 
-        System.out.println("Tempo : "+ tempo);
+			int escolha = scanner.nextInt();
 
-        //TODO: Mostrar o percurso com GUI
+			// Instanciar Labirinto
+			switch(escolha){
+				case 1: labirinto = new Nivel1();
+					break;
+				case 2: labirinto = new Nivel2();
+					break;
+				case 3: labirinto = new Nivel3();
+					break;
+				case 4: labirinto = new Nivel4();
+					break;
+				case 5: labirinto = new Nivel5();
+					break;
+				default: labirinto = new Nivel1();
+					break;
+			}
 
+			//Instanciar Jogador,
+			//Passar labirinto como parametro
+			jogador =  new Jogador(labirinto, acompanharJogador);
+
+			//Inicializar o contador de tempo
+			tempo = System.currentTimeMillis();
+
+			//Chamar metodo do jogador para iniciar jogo
+			jogador.iniciar();
+			System.out.println("FIM");
+
+			//Quando jogador finalizar, mostrar o resultado
+			//Com o tempo gasto e o caminho percorrido
+			tempo = System.currentTimeMillis() - tempo;
+
+			System.out.println("Tempo do percurso: "+ tempo + " ms");
+
+			System.out.println("");
+			System.out.println("Deseja voltar ao menu? (S/N)");
+
+			String resposta = scanner.next();
+			resposta = resposta.toLowerCase();
+
+			if(!resposta.equals("s")){
+				executar = false;
+			}
+
+		}
     }
 
 }

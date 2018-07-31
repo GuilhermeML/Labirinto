@@ -1,27 +1,16 @@
 package labirinto;
 
-import java.util.ArrayList;
-
-public class Nivel2 extends Labirinto implements Labirintos {
-	
-	private Posicao posicoes;
-	private ArrayList<Posicao> posPossiveis;
+public class Nivel2 extends Labirinto {
 	
 	public Nivel2(){
-		//Passar o nome do csv de nivel1 
-		//(Isso altera o momento de instanciar o labirinto no JogoController
 		super("lab2.csv");
 	}
-	
-	public Posicao getPosicaoInicial(){
-		posicoes = super.getPosicaoInicial();
-		return posicoes;
-	}
-	
-	public ArrayList<Posicao> getPosicoesPossiveis(Posicao posAtual){
-		posPossiveis = new ArrayList<>();
-		posPossiveis = super.getPosicoesPossiveis(posAtual);
-		return posPossiveis;
+
+	@Override
+	public void imprimirLabirinto(Posicao posAtual) {
+		System.out.println("");
+		System.out.println("Nível 2 - Fácil");
+		super.imprimirLabirinto(posAtual);
 	}
 
 }
