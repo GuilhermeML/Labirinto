@@ -106,7 +106,7 @@ public class Labirinto implements Labirintos {
 
     //Metodo utilizado para ler o arquivo .csv e transforma-lo
     //em uma matriz de objetos Posicao
-    public void parseCsv(String nomeArquivo){
+    private void parseCsv(String nomeArquivo){
 
         String arquivo = "res/" + nomeArquivo;
         String linha = "";
